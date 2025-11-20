@@ -44,21 +44,21 @@
 # #         docker build -t venky:${{ inputs.tag }} .  # Using input tag
 # #         docker images
 
-# name: deops_pipeline_practice
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       branch_name:
-#         required: true
-#         description: "provide the branch_name"
-#         type: choice
-#         options:
-#           - main
-#           - venky
-#       tag:
-#         description: "provide the tag"
-#         required: true
-#         type: string
+name: deops_pipeline_practice
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        required: true
+        description: "provide the branch_name"
+        type: choice
+        options:
+          - main
+          - venky
+      tag:
+        description: "provide the tag"
+        required: true
+        type: string
         
 # jobs:
 #   # Stage 1: Build and Test
