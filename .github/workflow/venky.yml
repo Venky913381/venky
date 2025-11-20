@@ -1,6 +1,6 @@
 name: deops_pipeline_practice
 on:
-  workflow_dipatch:
+  workflow_dispatch:  # Fixed typo: workflow_dipatch -> workflow_dispatch
     inputs:
       branch_name:
         required: true
@@ -12,18 +12,20 @@ on:
       tag:
         description: "provide the tag"
         required: true
-        type: environment
+        type: string  # Fixed: environment -> string (environment is not a valid input type)
+        
 jobs:
   dev_job:
     name: dev job running
-    run_on: ubuntu-latest
-    step:
+    runs-on: ubuntu-latest  # Fixed: run_on -> runs-on
+    steps:  # Fixed: step -> steps
     - name: checkout code
       uses: actions/checkout@v4
-    - name: build docker build 
+      with:  # Added to specify branch based on input
+        ref: ${{ inputs.branch_name }}
+        
+    - name: build docker image  # Better step name
       run: |
         echo "code build"
-        docker build -t venky:latest .
+        docker build -t venky:${{ inputs.tag }} .  # Using input tag
         docker images
-    
-
