@@ -29,3 +29,18 @@ jobs:
         echo "code build"
         docker build -t venky:${{ inputs.tag }} .  # Using input tag
         docker images
+jobs:
+  dev_job:
+    name: dev job running
+    runs-on: ubuntu-latest  # Fixed: run_on -> runs-on
+    steps:  # Fixed: step -> steps
+    - name: checkout code
+      uses: actions/checkout@v4
+      with:  # Added to specify branch based on input
+        ref: ${{ inputs.branch_name }}
+        
+    - name: build docker image  # Better step name
+      run: |
+        echo "code build"
+        docker build -t venky:${{ inputs.tag }} .  # Using input tag
+        docker images
