@@ -1,4 +1,4 @@
-name: deops pipeline practice
+name: deops_pipeline_practice
 on:
   workflow_dipatch:
     inputs:
